@@ -1,0 +1,21 @@
+.header {
+  background-color: aqua;
+  min-height: 80px;
+  border: solid 1px black;
+  padding: 0 50px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 500;
+  color: #fbff07;
+  font-size: 18px;
+}
+
+.activeLink {
+  composes: link;
+  color: blueviolet;
+}

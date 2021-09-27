@@ -1,0 +1,28 @@
+.wrapper {
+  border: solid 2px chartreuse;
+  padding: 10px;
+  display: flex;
+}
+
+.poster {
+  margin-right: 50px;
+}
+
+.details {
+  padding-top: 50px;
+}
+
+.list {
+  display: flex;
+}
+
+.list > li {
+  list-style-type: none;
+}
+.list > li:not(:last-child) {
+  margin-right: 10px;
+}
+
+.additionalInformation {
+  border-top: solid 1px black;
+}
