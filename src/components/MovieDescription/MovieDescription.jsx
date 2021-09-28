@@ -1,7 +1,8 @@
 import styles from "./MovieDescription.module.css";
 import { Link } from "react-router-dom";
 
-export function MovieDescription({ movie, url }) {
+export function MovieDescription({ movie, url, location }) {
+  // console.log("location::: ", location);
   return (
     <>
       <div className={styles.wrapper}>
@@ -30,11 +31,31 @@ export function MovieDescription({ movie, url }) {
         <h4>Additional information</h4>
         <ul>
           <li>
-            <Link to={`${url}/cast`}>Cast</Link>
+            <Link
+              to={{
+                ...location,
+                pathname: `${url}/cast`,
+              }}
+            >
+              Cast
+            </Link>
           </li>
           <li>
-            <Link to={`${url}/reviews`}>Reviews</Link>
+            <Link
+              to={{
+                ...location,
+                pathname: `${url}/reviews`,
+              }}
+            >
+              Reviews
+            </Link>
           </li>
+          {/* <li>
+            <Link to={`${url}/batman`}>Batman</Link>
+          </li> */}
+          {/* <li>
+            <Link to={"/pokemon"}>Pokemon</Link>
+          </li> */}
         </ul>
       </div>
     </>

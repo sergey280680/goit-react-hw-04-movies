@@ -28,6 +28,7 @@ export async function getMovies() {
 }
 
 export async function getMovieById({ movieId }) {
+  // console.log("getMovieById");
   try {
     const data = await axios.get(`/movie/${movieId}?language=en-US`);
     return data.data;
@@ -37,6 +38,7 @@ export async function getMovieById({ movieId }) {
 }
 
 export async function getCastById({ movieId }) {
+  // console.log("getCastById");
   try {
     const data = await axios.get(`/movie/${movieId}/credits?language=en-US`);
     return data.data.cast;
@@ -46,6 +48,7 @@ export async function getCastById({ movieId }) {
 }
 
 export async function getReviewsById({ movieId }) {
+  // console.log("getReviewsById");
   try {
     const data = await axios.get(
       `/movie/${movieId}/reviews?language=en-US&page=1`

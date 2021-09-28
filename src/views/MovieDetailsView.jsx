@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import { Route, useRouteMatch, useParams } from "react-router-dom";
+import {
+  Route,
+  useRouteMatch,
+  useParams,
+  useLocation,
+  useHistory,
+} from "react-router-dom";
 import { MovieDescription } from "../components/MovieDescription/MovieDescription";
 import {
   getMovieById,
@@ -8,10 +14,21 @@ import {
 } from "../services/movies-api";
 import { Cast } from "components/Cast/Cast";
 import { ReviewsView } from "./ReviewsView";
+import { NotFoundView } from "./NotFoundView";
+
+// ===========================================
+// ===========================================
 
 export function MovieDetailsView() {
   const { url, path } = useRouteMatch();
   const movieId = useParams();
+  const history = useHistory();
+  const location = useLocation();
+
+  const handleGoBack = () => {
+    // console.log("location: ", location);
+    history.push(location.state.from);
+  };
 
   const [movie, setMovie] = useState(null);
   const [cast, setCast] = useState(null);
@@ -25,9 +42,10 @@ export function MovieDetailsView() {
 
   return (
     <>
+      <button onClick={handleGoBack}>Go Back</button>
       {movie && (
         <>
-          <MovieDescription movie={movie} url={url} />
+          <MovieDescription movie={movie} url={url} location={location} />
           <hr />
           <Route path={`${path}/cast`} exact>
             <Cast cast={cast} />
@@ -37,6 +55,7 @@ export function MovieDetailsView() {
           </Route>
         </>
       )}
+      {/* {!movie && <NotFoundView />} */}
     </>
   );
 }

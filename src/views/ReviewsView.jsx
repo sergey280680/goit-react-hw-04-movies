@@ -4,7 +4,7 @@ import { Reviews } from "components/Reviews/Reviews";
 export function ReviewsView({ reviews }) {
   const [state, setState] = useState(null);
 
-  console.log("reviews: ", reviews);
+  // console.log("reviews: ", reviews);
 
   useEffect(() => {
     if (state === null || reviews.length === 0) {

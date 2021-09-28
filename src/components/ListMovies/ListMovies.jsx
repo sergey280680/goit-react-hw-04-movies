@@ -5,7 +5,15 @@ export function ListMovies({ movies }) {
     <ul>
       {movies.map(({ name, id, title }) => (
         <li key={id}>
-          <Link to={`/movies/${id}`}>{name || title}</Link>
+          {/* <Link to={`/movies/${id}`}>{name || title}</Link> */}
+          <Link
+            to={{
+              pathname: `/movies/${id}`,
+              state: { from: "/" },
+            }}
+          >
+            {name || title}
+          </Link>
         </li>
       ))}
     </ul>

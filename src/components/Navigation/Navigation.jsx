@@ -19,13 +19,6 @@ export function Navigation() {
       >
         Movies
       </NavLink>
-      <NavLink
-        to="/pokemon"
-        className={styles.link}
-        activeClassName={styles.activeLink}
-      >
-        Pokemon
-      </NavLink>
     </nav>
   );
 }
