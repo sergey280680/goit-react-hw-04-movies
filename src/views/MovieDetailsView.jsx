@@ -14,6 +14,7 @@ import {
 } from "../services/movies-api";
 import { Cast } from "components/Cast/Cast";
 import { ReviewsView } from "./ReviewsView";
+import { SpinnerLoader } from "../components/Spinner/Spinner";
 import { NotFoundView } from "./NotFoundView";
 
 // ===========================================
@@ -27,22 +28,38 @@ export function MovieDetailsView() {
 
   const handleGoBack = () => {
     // console.log("location: ", location);
-    history.push(location.state.from);
+    history.push(location.state?.from ? location.state.from : "/");
   };
 
   const [movie, setMovie] = useState(null);
   const [cast, setCast] = useState(null);
   const [reviews, setReviews] = useState(null);
+  const [status, setStatus] = useState("idle");
 
   useEffect(() => {
-    getMovieById(movieId).then(setMovie);
-    getCastById(movieId).then(setCast);
-    getReviewsById(movieId).then(setReviews);
+    const movie = async () => {
+      setStatus("pending", status);
+
+      await getMovieById(movieId).then((el) => {
+        if (el) {
+          setMovie(el);
+        } else {
+          return setStatus("rejected");
+        }
+      });
+
+      getCastById(movieId).then(setCast);
+      getReviewsById(movieId).then(setReviews);
+    };
+
+    movie();
   }, [movieId]);
 
   return (
     <>
       <button onClick={handleGoBack}>Go Back</button>
+      {status === "pending" && <SpinnerLoader />}
+      {status === "rejected" && <NotFoundView />}
       {movie && (
         <>
           <MovieDescription movie={movie} url={url} location={location} />
@@ -55,7 +72,6 @@ export function MovieDetailsView() {
           </Route>
         </>
       )}
-      {/* {!movie && <NotFoundView />} */}
     </>
   );
 }

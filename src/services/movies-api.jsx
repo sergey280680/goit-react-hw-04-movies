@@ -14,7 +14,7 @@ export async function getSearchMovie({ movieQuery }) {
     );
     return data.data.results;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
@@ -43,7 +43,7 @@ export async function getCastById({ movieId }) {
     const data = await axios.get(`/movie/${movieId}/credits?language=en-US`);
     return data.data.cast;
   } catch (error) {
-    console.log("error: ", error);
+    console.error(error);
   }
 }
 
@@ -55,6 +55,6 @@ export async function getReviewsById({ movieId }) {
     );
     return data.data.results;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }

@@ -7,7 +7,6 @@ import { HomeView } from "./views/HomeView";
 import { MoviesView } from "./views/MoviesView";
 import { NotFoundView } from "./views/NotFoundView";
 import { MovieDetailsView } from "./views/MovieDetailsView";
-import { Pokemon } from "views/PokemonView";
 
 function App() {
   return (
@@ -24,9 +23,6 @@ function App() {
           </Route>
           <Route path="/movies/:movieId">
             <MovieDetailsView />
-          </Route>
-          <Route path="/pokemon">
-            <Pokemon />
           </Route>
 
           <Route>
