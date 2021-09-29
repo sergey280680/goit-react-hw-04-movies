@@ -47,11 +47,11 @@ export function MovieDetailsView() {
           return setStatus("rejected");
         }
       });
-
-      getCastById(movieId).then(setCast);
-      getReviewsById(movieId).then(setReviews);
     };
+    getCastById(movieId).then(setCast);
+    getReviewsById(movieId).then(setReviews);
 
+    console.log("location: ", location);
     movie();
   }, [movieId]);
 

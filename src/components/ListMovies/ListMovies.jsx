@@ -6,6 +6,7 @@ export function ListMovies({ movies }) {
       {movies.map(({ name, id, title }) => (
         <li key={id}>
           <Link
+            // to={`/movies/${id}`}
             to={{
               pathname: `/movies/${id}`,
               state: { from: "/" },
