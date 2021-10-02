@@ -29,7 +29,6 @@ function App() {
             <NotFoundView />
           </Route>
         </Switch>
-        {/* <Redirect to="/404" /> */}
       </WrapperViews>
     </Container>
   );
