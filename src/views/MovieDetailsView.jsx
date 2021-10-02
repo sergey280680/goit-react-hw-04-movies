@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import {
+  Switch,
   Route,
   useRouteMatch,
   useParams,
@@ -38,11 +39,12 @@ export function MovieDetailsView() {
 
   useEffect(() => {
     const movie = async () => {
-      setStatus("pending", status);
+      setStatus("pending");
 
       await getMovieById(movieId).then((el) => {
         if (el) {
           setMovie(el);
+          setStatus("resolved");
         } else {
           return setStatus("rejected");
         }
@@ -51,7 +53,6 @@ export function MovieDetailsView() {
     getCastById(movieId).then(setCast);
     getReviewsById(movieId).then(setReviews);
 
-    console.log("location: ", location);
     movie();
   }, [movieId]);
 
@@ -60,16 +61,18 @@ export function MovieDetailsView() {
       <button onClick={handleGoBack}>Go Back</button>
       {status === "pending" && <SpinnerLoader />}
       {status === "rejected" && <NotFoundView />}
-      {movie && (
+      {status === "resolved" && (
         <>
           <MovieDescription movie={movie} url={url} location={location} />
           <hr />
-          <Route path={`${path}/cast`} exact>
-            <Cast cast={cast} />
-          </Route>
-          <Route path={`${path}/reviews`} exact>
-            <ReviewsView reviews={reviews} />
-          </Route>
+          <Switch>
+            <Route path={`${path}/cast`} exact>
+              <Cast cast={cast} />
+            </Route>
+            <Route path={`${path}/reviews`} exact>
+              <ReviewsView reviews={reviews} />
+            </Route>
+          </Switch>
         </>
       )}
     </>

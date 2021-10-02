@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { Container } from "components/Container/Container";
 import { Navigation } from "components/Navigation/Navigation";
 
@@ -25,10 +25,11 @@ function App() {
             <MovieDetailsView />
           </Route>
 
-          <Route>
+          <Route path="*">
             <NotFoundView />
           </Route>
         </Switch>
+        <Redirect to="/" />
       </WrapperViews>
     </Container>
   );

@@ -14,7 +14,7 @@ export async function getSearchMovie({ movieQuery }) {
     );
     return data.data.results;
   } catch (error) {
-    console.error(error);
+    console.log(error.message);
   }
 }
 
@@ -23,7 +23,7 @@ export async function getMovies() {
     const data = await axios.get(`/trending/all/day?`);
     return data.data.results;
   } catch (error) {
-    console.error(error);
+    console.log(error.message);
   }
 }
 
@@ -33,7 +33,7 @@ export async function getMovieById({ movieId }) {
     const data = await axios.get(`/movie/${movieId}?language=en-US`);
     return data.data;
   } catch (error) {
-    console.error(error);
+    console.log(error.message);
   }
 }
 
@@ -43,7 +43,7 @@ export async function getCastById({ movieId }) {
     const data = await axios.get(`/movie/${movieId}/credits?language=en-US`);
     return data.data.cast;
   } catch (error) {
-    console.error(error);
+    console.log(error.message);
   }
 }
 
@@ -55,6 +55,6 @@ export async function getReviewsById({ movieId }) {
     );
     return data.data.results;
   } catch (error) {
-    console.error(error);
+    console.log(error.message);
   }
 }
