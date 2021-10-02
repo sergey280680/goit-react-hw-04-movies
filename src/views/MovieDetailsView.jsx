@@ -6,6 +6,7 @@ import {
   useParams,
   useLocation,
   useHistory,
+  Redirect,
 } from "react-router-dom";
 import { MovieDescription } from "../components/MovieDescription/MovieDescription";
 import {
@@ -16,7 +17,7 @@ import {
 import { Cast } from "components/Cast/Cast";
 import { ReviewsView } from "./ReviewsView";
 import { SpinnerLoader } from "../components/Spinner/Spinner";
-import { NotFoundView } from "./NotFoundView";
+// import { NotFoundView } from "./NotFoundView";
 
 // ===========================================
 // ===========================================
@@ -60,7 +61,7 @@ export function MovieDetailsView() {
     <>
       <button onClick={handleGoBack}>Go Back</button>
       {status === "pending" && <SpinnerLoader />}
-      {status === "rejected" && <NotFoundView />}
+      {status === "rejected" && <Redirect to="/404" />}
       {status === "resolved" && (
         <>
           <MovieDescription movie={movie} url={url} location={location} />

@@ -25,11 +25,11 @@ function App() {
             <MovieDetailsView />
           </Route>
 
-          <Route path="*">
+          <Route path="/404">
             <NotFoundView />
           </Route>
         </Switch>
-        <Redirect to="/" />
+        {/* <Redirect to="/404" /> */}
       </WrapperViews>
     </Container>
   );
